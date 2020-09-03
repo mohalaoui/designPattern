@@ -14,22 +14,43 @@ public class YearlyBonusVisitor implements Visitor {
 
 	private double calcultateYearlyBonus(AbstractEmployee employee) {
 		double result = 0;
-		double tenPercent = 10.0 / 100.0;
-		double twentyPercent = 20.0 / 100.0;
-		double thirtyPercent = 30.0 / 100.0;
 		int seniorityYears = employee.getSeniorityYears();
 		
-		if (seniorityYears > 2 && seniorityYears < 5) {
-			result = employee.getSalary() * tenPercent;
+		if (isTenPercentEligible(seniorityYears)) {
+			result = employee.getSalary() * tenPercent();
 		}
-		if (seniorityYears >= 5 && seniorityYears < 10) {
-			result = employee.getSalary() * twentyPercent;
+		if (isTwentyPercentEligible(seniorityYears)) {
+			result = employee.getSalary() * twentyPercent();
 		}
-		if (seniorityYears >= 10) {
-			result = employee.getSalary() * thirtyPercent;
+		if (isThirtyPercentEligible(seniorityYears)) {
+			result = employee.getSalary() * thirtyPercent();
 		}
 
 		return result;
+	}
+
+	private double thirtyPercent() {
+		return 30.0 / 100.0;
+	}
+
+	private double twentyPercent() {
+		return 20.0 / 100.0;
+	}
+
+	private double tenPercent() {
+		return 10.0 / 100.0;
+	}
+
+	private boolean isThirtyPercentEligible(int seniorityYears) {
+		return seniorityYears >= 10;
+	}
+
+	private boolean isTwentyPercentEligible(int seniorityYears) {
+		return seniorityYears >= 5 && seniorityYears < 10;
+	}
+
+	private boolean isTenPercentEligible(int seniorityYears) {
+		return seniorityYears > 2 && seniorityYears < 5;
 	}
 
 }
