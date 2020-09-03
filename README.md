@@ -30,4 +30,7 @@ example: creating a cache singleton example
 ### strategy
 example: adding diffrent type of bonus to employee
 
+### visitor
+example: delegating calcul of yealy employees bonus to visitor
+
 

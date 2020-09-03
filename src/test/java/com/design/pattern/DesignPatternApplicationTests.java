@@ -26,6 +26,8 @@ import com.design.pattern.core.singleton.CacheSingleton;
 import com.design.pattern.core.strategy.Employee;
 import com.design.pattern.core.strategy.FiftyPercentBonus;
 import com.design.pattern.core.strategy.TwentyPercentBonus;
+import com.design.pattern.core.visitor.Consultant;
+import com.design.pattern.core.visitor.YearlyBonusVisitor;
 
 
 //@SpringBootTest
@@ -151,6 +153,15 @@ class DesignPatternApplicationTests {
 								.build();
 		
 		System.out.println(book);
+	}
+	
+	@Test
+	void testVisitorrPattern() {
+		YearlyBonusVisitor yearlyBonusVisitor = new YearlyBonusVisitor();
+		Consultant consultant = new Consultant("Martin", "Robert", 2000, 3, "SFR");
+		System.out.println("Yealy Bonus:");
+		double yearlyBonus = consultant.accept(yearlyBonusVisitor);
+		System.out.println(yearlyBonus);
 	}
 
 
